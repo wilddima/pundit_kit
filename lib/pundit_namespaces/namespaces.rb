@@ -20,20 +20,18 @@ module PunditNamespaces
 
     def matches(matcher)
       match_tree = find_match(matcher)
-      children_names(match_tree)
+      all_pathes(match_tree)
     end
 
     private
 
     def find_match(matcher)
-      new_tree = @tree.dup
-
-      new_tree.each do |node|
-        next unless node.content
-        node.remove_from_parent! unless node.content.match?(matcher)
+      tree.dup.tap do |dup_tree|
+        dup_tree.each do |node|
+          next unless node.content
+          node.remove_from_parent! unless node.content.match?(matcher)
+        end
       end
-
-      new_tree
     end
 
     def children_names(match_tree)
@@ -41,6 +39,18 @@ module PunditNamespaces
         acc << child.name
         acc << children_names(child) if child.has_children?
         acc
+      end
+    end
+
+    def all_pathes(match_tree)
+      match_tree.each_leaf.map do |node|
+        res = [node.name]
+        loop do
+          break if node.is_root?
+          res << node.parent.name
+          node = node.parent
+        end
+        res.reverse[1..-1]
       end
     end
 
