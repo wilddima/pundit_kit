@@ -5,13 +5,17 @@ module PunditNamespaces
       @parent ||= []
 
       ns = Namespace.new(name, options)
-      @parent.inject(tree) { |acc, val| acc = acc[val]; acc } << Tree::TreeNode.new(name, ns)
-
-      if block_given?
-        @parent << name
-        instance_eval(&block)
-        @parent.pop
+      last_node = @parent.inject(tree) do |acc, val|
+        acc = acc[val]
+        acc
       end
+      last_node << Tree::TreeNode.new(name, ns)
+
+      return unless block_given?
+
+      @parent << name
+      instance_eval(&block)
+      @parent.pop
     end
 
     def root_namespace(options = {}, &block)
@@ -35,10 +39,9 @@ module PunditNamespaces
     end
 
     def children_names(match_tree)
-      match_tree.children.inject([]) do |acc, child|
+      match_tree.children.each_with_object([]) do |child, acc|
         acc << child.name
         acc << children_names(child) if child.has_children?
-        acc
       end
     end
 

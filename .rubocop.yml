@@ -1,0 +1,24 @@
+AllCops:
+  Exclude:
+    - pundit_namespaces.gemspec
+    - spec/dummy/**/*
+
+Metrics/LineLength:
+  Max: 100
+
+Metrics/ModuleLength:
+  Exclude:
+    - "**/*_spec.rb"
+
+Metrics/BlockLength:
+  Exclude:
+    - "**/*_spec.rb"
+
+Metrics/MethodLength:
+  Max: 15
+
+Metrics/ParameterLists:
+  Max: 7
+
+Style/FrozenStringLiteralComment:
+  Enabled: false

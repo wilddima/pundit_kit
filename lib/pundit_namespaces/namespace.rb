@@ -5,7 +5,7 @@ module PunditNamespaces
     def initialize(name, options = {})
       @name = name
       @options = options
-      @match = options.delete(:if) || -> (_) { true }
+      @match = options.delete(:if) || ->(_) { true }
     end
 
     def match?(*args)
