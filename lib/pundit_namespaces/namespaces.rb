@@ -5,10 +5,12 @@ module PunditNamespaces
       @parent ||= []
 
       ns = Namespace.new(name, options)
+
       last_node = @parent.inject(tree) do |acc, val|
         acc = acc[val]
         acc
       end
+
       last_node << Tree::TreeNode.new(name, ns)
 
       return unless block_given?
@@ -47,13 +49,13 @@ module PunditNamespaces
 
     def all_pathes(match_tree)
       match_tree.each_leaf.map do |node|
-        res = [node.name]
+        path = [node.name]
         loop do
           break if node.is_root?
-          res << node.parent.name
+          path << node.parent.name
           node = node.parent
         end
-        res.reverse[1..-1]
+        path.reverse[1..-1]
       end
     end
 

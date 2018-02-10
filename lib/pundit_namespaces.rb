@@ -4,6 +4,8 @@ require 'pundit'
 require 'pundit_namespaces/version'
 require 'pundit_namespaces/namespace'
 require 'pundit_namespaces/namespaces'
+require 'pundit_namespaces/routes_tree'
+require 'pundit_namespaces/pundit/policy_finder'
 
 module PunditNamespaces
   def self.routes(&block)

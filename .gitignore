@@ -5,6 +5,7 @@
 /doc/
 /pkg/
 /spec/reports/
+/spec/dummy/log/
 /tmp/
 .DS_Store
 *.swp
