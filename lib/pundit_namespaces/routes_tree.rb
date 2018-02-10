@@ -3,10 +3,10 @@ module PunditNamespaces
     extend Forwardable
     attr_accessor :tree
 
-    def_delegators :tree, :<<, :each, :children
+    def_delegators :@tree, :<<, :each, :children, :each_leaf, :[]
 
-    def initialize
-      @tree = Tree::TreeNode.new(:_root)
+    def initialize(tree = Tree::TreeNode.new(:_root))
+      @tree = tree
     end
 
     def find_node_by_stack(stack)
@@ -27,9 +27,13 @@ module PunditNamespaces
     end
 
     def dup
-      copy = self.dup
+      copy = super
       copy.tree = self.tree.dup
       copy
+    end
+
+    def children
+      self.class.new(tree.children)
     end
   end
 end

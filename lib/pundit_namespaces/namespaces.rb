@@ -60,7 +60,7 @@ module PunditNamespaces
     end
 
     def tree
-      @tree ||= Tree::TreeNode.new(:_root)
+      @tree ||= RoutesTree.new
     end
   end
 end
