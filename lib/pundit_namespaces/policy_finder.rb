@@ -11,7 +11,7 @@ module PunditNamespaces
       PunditNamespaces.namespaces.matches(matcher).map do |namespace|
         next policy_finder(namespace, obj).policy! if namespace.map(&:presence?).all?
         policy_finder(namespace, obj).policy
-      end
+      end.compact
     end
 
     private

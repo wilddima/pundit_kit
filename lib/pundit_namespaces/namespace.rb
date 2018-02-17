@@ -3,6 +3,7 @@ module PunditNamespaces
     attr_reader :name, :options, :match, :presence
 
     def initialize(name, options = {})
+      @name = name
       @match = options.delete(:if) || ->(_) { true }
       @presence = options[:presence].nil? ? true : options.delete(:presence)
     end
