@@ -16,11 +16,16 @@ module PunditNamespaces
       end
     end
 
+    def <<(node)
+      tree << node
+      new_tree(tree)
+    end
+
     def path_to_root(node)
-      path = [node.name]
+      path = [node.content]
       loop do
         break if node.is_root?
-        path << node.parent.name
+        path << node.parent.content
         node = node.parent
       end
       path.reverse[1..-1]
@@ -33,7 +38,13 @@ module PunditNamespaces
     end
 
     def children
-      self.class.new(tree.children)
+      new_tree(tree.children)
+    end
+
+    private
+
+    def new_tree(tree)
+      self.class.new(tree)
     end
   end
 end

@@ -2,22 +2,15 @@ module PunditNamespaces
   class Namespaces
     def namespace(name, options = {}, &block)
       name = name.to_sym
-      @parent ||= []
+      node = new_node(name, new_namespace(name, options))
 
-      ns = Namespace.new(name, options)
-
-      last_node = @parent.inject(tree) do |acc, val|
-        acc = acc[val]
-        acc
-      end
-
-      last_node << Tree::TreeNode.new(name, ns)
+      tree.find_node_by_stack(parent) << node
 
       return unless block_given?
 
-      @parent << name
+      parent << name
       instance_eval(&block)
-      @parent.pop
+      parent.pop
     end
 
     def root_namespace(options = {}, &block)
@@ -49,18 +42,24 @@ module PunditNamespaces
 
     def all_pathes(match_tree)
       match_tree.each_leaf.map do |node|
-        path = [node.name]
-        loop do
-          break if node.is_root?
-          path << node.parent.name
-          node = node.parent
-        end
-        path.reverse[1..-1]
+        match_tree.path_to_root(node)
       end
     end
 
     def tree
       @tree ||= RoutesTree.new
+    end
+
+    def parent
+      @parent ||= []
+    end
+
+    def new_node(name, ns)
+      Tree::TreeNode.new(name, ns)
+    end
+
+    def new_namespace(name, options)
+      Namespace.new(name, options)
     end
   end
 end
