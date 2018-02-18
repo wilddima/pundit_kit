@@ -18,7 +18,7 @@ module PunditNamespaces
 
     def policy_finder(namespace, obj)
       ns = namespace.map(&:name).delete_if { |n| n == :_root_namespace }
-      Pundit::PolicyFinder.new([*ns, obj])
+      Pundit::PolicyFinder.new([*ns, *obj])
     end
 
   end
