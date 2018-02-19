@@ -22,8 +22,8 @@ RSpec.describe PunditNamespaces::Namespaces do
 
     let(:matcher) { 1 }
 
-    it '' do
-      expect(subject).to eq([%i[first _root_namespace], %i[first one]])
+    it 'return correct route' do
+      expect(subject.flatten.map(&:name)).to match_array(%i[first _root_namespace first one])
     end
   end
 end
