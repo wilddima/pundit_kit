@@ -3,9 +3,7 @@ PATH
   specs:
     pundit_namespaces (0.1.0)
       pundit
-      rails
       rubytree
-      sqlite3
 
 GEM
   remote: https://rubygems.org/
@@ -171,10 +169,12 @@ DEPENDENCIES
   pry
   pry-byebug
   pundit_namespaces!
+  rails
   rake
   rspec
   rspec-rails
   rubocop
+  sqlite3
 
 BUNDLED WITH
    1.16.0

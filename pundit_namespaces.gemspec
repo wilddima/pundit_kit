@@ -32,8 +32,8 @@ Gem::Specification.new do |spec|
 
   spec.add_dependency 'rubytree'
   spec.add_dependency 'pundit'
-  spec.add_dependency 'rails'
-  spec.add_dependency 'sqlite3'
+  spec.add_development_dependency 'rails'
+  spec.add_development_dependency 'sqlite3'
   spec.add_development_dependency 'bundler'
   spec.add_development_dependency 'rake'
   spec.add_development_dependency 'rspec'
