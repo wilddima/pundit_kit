@@ -7,14 +7,14 @@ module PunditNamespaces
         unless policy[:policy_obj].public_send(query)
           raise policy[:error], query: query, record: record, policy: policy
         end
-
-        record
       end
+
+      record
     end
 
     def policy(user, record)
       policy_namespaces(user, record)
-        .map{ |policy| policy[:policy_obj] }
+        .map { |policy| policy[:policy_obj] }
     end
 
     def pundit_namespace_matcher

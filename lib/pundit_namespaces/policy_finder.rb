@@ -1,6 +1,5 @@
 module PunditNamespaces
   class PolicyFinder
-
     attr_reader :matcher
 
     def initialize(matcher)
@@ -34,6 +33,5 @@ module PunditNamespaces
       ns = namespace.map(&:name).delete_if { |n| n == :_root_namespace }
       Pundit::PolicyFinder.new([*ns, *obj])
     end
-
   end
 end

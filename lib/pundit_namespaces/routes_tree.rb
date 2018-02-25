@@ -33,7 +33,7 @@ module PunditNamespaces
 
     def dup
       copy = super
-      copy.tree = self.tree.dup
+      copy.tree = tree.dup
       copy
     end
 

@@ -9,7 +9,6 @@ require 'pundit_namespaces/policy_finder'
 require 'pundit_namespaces/helpers'
 
 module PunditNamespaces
-
   def self.routes(&block)
     namespaces.instance_eval(&block)
     namespaces
