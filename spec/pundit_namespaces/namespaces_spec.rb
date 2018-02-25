@@ -3,16 +3,16 @@ require 'spec_helper'
 RSpec.describe PunditNamespaces::Namespaces do
   let(:namespaces) do
     PunditNamespaces.routes do
-      namespace :first, if: ->(x) { x > 0 } do
+      namespace :first, if: -> (x) { x > 0 } do
         root_namespace
-        namespace :one, if: ->(x) { x == 1 }
-        namespace :two, if: ->(x) { x == 2 }
+        namespace :one, if: -> (x) { x == 1 }
+        namespace :two, if: -> (x) { x == 2 }
       end
 
-      namespace :second, if: ->(x) { x < 0 } do
+      namespace :second, if: -> (x) { x < 0 } do
         root_namespace
-        namespace :one, if: ->(x) { x == -1 }
-        namespace :two, if: ->(x) { x == -2 }
+        namespace :one, if: -> (x) { x == -1 }
+        namespace :two, if: -> (x) { x == -2 }
       end
     end
   end

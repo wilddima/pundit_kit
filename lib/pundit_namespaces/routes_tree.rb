@@ -3,7 +3,7 @@ module PunditNamespaces
     extend Forwardable
     attr_accessor :tree
 
-    def_delegators :@tree, :<<, :each, :children, :each_leaf, :[]
+    def_delegators :@tree, :each, :children, :each_leaf, :[]
 
     def initialize(tree = Tree::TreeNode.new(:_root))
       @tree = tree
