@@ -4,13 +4,13 @@ module PunditNamespaces
       name = name.to_sym
       node = new_node(name, new_namespace(name, options))
 
-      push_node_to_tree(parent, node)
+      push_node_to_tree(stack, node)
 
       return unless block_given?
 
-      parent << name
+      stack << name
       instance_eval(&block)
-      parent.pop
+      stack.pop
     end
 
     def root_namespace(options = {}, &block)
@@ -32,8 +32,8 @@ module PunditNamespaces
       @tree ||= RoutesTree.new
     end
 
-    def parent
-      @parent ||= []
+    def stack
+      @stack||= []
     end
 
     def new_node(name, ns)
@@ -44,9 +44,9 @@ module PunditNamespaces
       Namespace.new(name, options)
     end
 
-    def push_node_to_tree(parent, node)
+    def push_node_to_tree(stack, node)
       @filled = true
-      tree.find_node_by_stack(parent) << node
+      tree.find_node_by_stack(stack) << node
     end
   end
 end
