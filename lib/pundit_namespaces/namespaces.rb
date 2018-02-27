@@ -4,7 +4,7 @@ module PunditNamespaces
       name = name.to_sym
       node = new_node(name, new_namespace(name, options))
 
-      tree.find_node_by_stack(parent) << node
+      push_node_to_tree(parent, node)
 
       return unless block_given?
 
@@ -18,33 +18,15 @@ module PunditNamespaces
     end
 
     def matches(matcher)
-      match_tree = find_match(matcher)
-      all_pathes(match_tree)
+      tree.find_match(matcher)
+          .all_pathes_to_root
+    end
+
+    def filled?
+      @filled ||= false
     end
 
     private
-
-    def find_match(matcher)
-      tree.dup.tap do |dup_tree|
-        dup_tree.each do |node|
-          next unless node.content
-          node.remove_from_parent! unless node.content.match?(matcher)
-        end
-      end
-    end
-
-    def children_names(match_tree)
-      match_tree.children.each_with_object([]) do |child, acc|
-        acc << child.name
-        acc << children_names(child) if child.has_children?
-      end
-    end
-
-    def all_pathes(match_tree)
-      match_tree.each_leaf.map do |node|
-        match_tree.path_to_root(node)
-      end
-    end
 
     def tree
       @tree ||= RoutesTree.new
@@ -60,6 +42,11 @@ module PunditNamespaces
 
     def new_namespace(name, options)
       Namespace.new(name, options)
+    end
+
+    def push_node_to_tree(parent, node)
+      @filled = true
+      tree.find_node_by_stack(parent) << node
     end
   end
 end

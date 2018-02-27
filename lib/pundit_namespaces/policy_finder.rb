@@ -7,7 +7,7 @@ module PunditNamespaces
     end
 
     def all_policies_for(obj)
-      PunditNamespaces.namespaces.matches(matcher).map do |namespace|
+      PunditNamespaces.find_namespaces_by(matcher).map do |namespace|
         policy = policy_finder(namespace, obj).policy! if namespace.map(&:presence?).all?
         next policy_obj(policy, namespace) if policy
         policy = policy_finder(namespace, obj).policy

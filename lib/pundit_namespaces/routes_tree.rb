@@ -3,7 +3,7 @@ module PunditNamespaces
     extend Forwardable
     attr_accessor :tree
 
-    def_delegators :@tree, :each, :children, :each_leaf, :[]
+    def_delegators :@tree, :each, :children, :each_leaf, :path_to_root, :[]
 
     def initialize(tree = Tree::TreeNode.new(:_root))
       @tree = tree
@@ -14,6 +14,19 @@ module PunditNamespaces
         acc = acc[val]
         acc
       end
+    end
+
+    def find_match(matcher)
+      dup.tap do |dup_tree|
+        dup_tree.each do |node|
+          next unless node.content
+          node.remove_from_parent! unless node.content.match?(matcher)
+        end
+      end
+    end
+
+    def all_pathes_to_root
+      each_leaf.map { |node| path_to_root(node) }
     end
 
     def <<(node)
