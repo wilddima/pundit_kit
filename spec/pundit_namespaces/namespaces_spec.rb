@@ -1,6 +1,8 @@
 require 'spec_helper'
 
 RSpec.describe PunditNamespaces::Namespaces do
+  before { PunditNamespaces.drop_namespaces! }
+
   let(:namespaces) do
     PunditNamespaces.routes do
       namespace :first, if: -> (x) { x > 0 } do

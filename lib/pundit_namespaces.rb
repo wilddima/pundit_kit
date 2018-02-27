@@ -29,6 +29,10 @@ module PunditNamespaces
     namespaces.matches(matcher)
   end
 
+  def self.drop_namespaces!
+    @namespaces = nil
+  end
+
   def self.included(base)
     base.include(PunditNamespaces::Helpers)
     base.class_eval do
