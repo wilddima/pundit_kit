@@ -2,8 +2,10 @@ module PunditNamespaces
   module Helpers
     class UndefinedMatcherError < StandardError; end
 
-    def authorize_all(user, record, query)
-      policy_namespaces(user, record).each do |policy|
+    def authorize_all(record, query = nil)
+      query ||= params[:action].to_s + "?"
+
+      policy_namespaces(pundit_user, record).each do |policy|
         unless policy[:policy_obj].public_send(query)
           raise policy[:error], query: query, record: record, policy: policy
         end
@@ -12,8 +14,8 @@ module PunditNamespaces
       record
     end
 
-    def all_policies(user, record)
-      policy_namespaces(user, record)
+    def all_policies(record)
+      policy_namespaces(pundit_user, record)
         .map { |policy| policy[:policy_obj] }
     end
 
