@@ -26,7 +26,10 @@ module PunditNamespaces
     end
 
     def all_pathes_to_root
-      each_leaf.map { |node| path_to_root(node) }
+      each_leaf.inject([]) do |acc, node|
+        acc += pathes_to_root(node)
+        acc
+      end
     end
 
     def <<(node)
@@ -42,6 +45,16 @@ module PunditNamespaces
         node = node.parent
       end
       path.reverse[1..-1]
+    end
+
+    def pathes_to_root(node)
+      path = []
+      loop do
+        break if node.is_root?
+        path << path_to_root(node)
+        node = node.parent
+      end
+      path.reverse
     end
 
     def dup
