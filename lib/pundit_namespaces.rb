@@ -38,9 +38,8 @@ module PunditNamespaces
     base.class_eval do
       helper PunditNamespaces::Helpers if respond_to?(:helper)
       if respond_to?(:helper_method)
-        helper_method :policy
-        helper_method :pundit_namespace_matcher
-        helper_method :pundit_user
+        helper_method :authorize_all
+        helper_method :policies
       end
     end
   end
