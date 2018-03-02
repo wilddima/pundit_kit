@@ -15,6 +15,14 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
+    context 'user is superclient' do
+      let(:user) { :superclient }
+
+      it 'does return success' do
+        expect(subject).to have_http_status(:success)
+      end
+    end
+
     context 'user is user' do
       let(:user) { :user }
 
@@ -43,6 +51,14 @@ RSpec.describe PostsController, type: :controller do
       end
     end
 
+    context 'user is superclient' do
+      let(:user) { :superclient }
+
+      it 'does raise error' do
+        expect{ subject }.to raise_error(ClientNotAllowedError)
+      end
+    end
+
     context 'user is user' do
       let(:user) { :user }
 
@@ -66,6 +82,14 @@ RSpec.describe PostsController, type: :controller do
     subject { delete(:destroy, params: { id: 1 }) }
 
     context 'user is client' do
+      it 'does raise error' do
+        expect{ subject }.to raise_error(ClientNotAllowedError)
+      end
+    end
+
+    context 'user is superclient' do
+      let(:user) { :superclient }
+
       it 'does raise error' do
         expect{ subject }.to raise_error(ClientNotAllowedError)
       end

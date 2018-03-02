@@ -18,6 +18,10 @@ class User
   end
 
   def client?
-    kind == :client
+    superclient? || kind == :client
+  end
+
+  def superclient?
+    kind == :superclient
   end
 end
