@@ -1,31 +1,33 @@
 require 'spec_helper'
 
 RSpec.describe PunditNamespaces::Namespaces do
-  before { PunditNamespaces.drop_namespaces! }
-
-  let(:namespaces) do
-    PunditNamespaces.routes do
-      namespace :first, if: -> (x) { x > 0 } do
-        root_namespace
-        namespace :one, if: -> (x) { x == 1 }
-        namespace :two, if: -> (x) { x == 2 }
-      end
-
-      namespace :second, if: -> (x) { x < 0 } do
-        root_namespace
-        namespace :one, if: -> (x) { x == -1 }
-        namespace :two, if: -> (x) { x == -2 }
-      end
-    end
-  end
+  let(:namespaces) { PunditNamespaces.namespaces }
 
   describe '#matches' do
     subject { namespaces.matches(matcher) }
 
-    let(:matcher) { 1 }
+    context 'when matcher is admin' do
+      let(:matcher) { User.new(:admin) }
 
-    it 'return correct route' do
-      expect(subject.flatten.map(&:name)).to match_array(%i[first _root_namespace first one])
+      it 'return staff admin route' do
+        expect(subject.flatten.map(&:name)).to eq(%i[staff admin])
+      end
+    end
+
+    context 'when matcher is user' do
+      let(:matcher) { User.new(:user) }
+
+      it 'return staff user route' do
+        expect(subject.flatten.map(&:name)).to eq(%i[staff user])
+      end
+    end
+
+    context 'when matcher is client' do
+      let(:matcher) { User.new(:client) }
+
+      it 'return client route' do
+        expect(subject.flatten.map(&:name)).to eq(%i[client])
+      end
     end
   end
 end
