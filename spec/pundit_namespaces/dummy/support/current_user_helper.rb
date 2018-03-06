@@ -3,7 +3,7 @@ module CurrentUserHelper
     @controller.instance_variable_set(:@current_user, user)
   end
 
-  def sign_out(user)
+  def sign_out
     @controller.instance_variable_set(:@current_user, nil)
   end
 end

@@ -47,7 +47,7 @@ RSpec.describe PostsController, type: :controller do
 
     context 'user is client' do
       it 'does raise error' do
-        expect{ subject }.to raise_error(ClientNotAllowedError)
+        expect { subject }.to raise_error(ClientNotAllowedError)
       end
     end
 
@@ -55,7 +55,7 @@ RSpec.describe PostsController, type: :controller do
       let(:user) { :superclient }
 
       it 'does raise error' do
-        expect{ subject }.to raise_error(ClientNotAllowedError)
+        expect { subject }.to raise_error(ClientNotAllowedError)
       end
     end
 
@@ -83,7 +83,7 @@ RSpec.describe PostsController, type: :controller do
 
     context 'user is client' do
       it 'does raise error' do
-        expect{ subject }.to raise_error(ClientNotAllowedError)
+        expect { subject }.to raise_error(ClientNotAllowedError)
       end
     end
 
@@ -91,7 +91,7 @@ RSpec.describe PostsController, type: :controller do
       let(:user) { :superclient }
 
       it 'does raise error' do
-        expect{ subject }.to raise_error(ClientNotAllowedError)
+        expect { subject }.to raise_error(ClientNotAllowedError)
       end
     end
 
@@ -99,7 +99,7 @@ RSpec.describe PostsController, type: :controller do
       let(:user) { :user }
 
       it 'does raise error' do
-        expect{ subject }.to raise_error(UserNotAllowedError)
+        expect { subject }.to raise_error(UserNotAllowedError)
       end
     end
 

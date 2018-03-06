@@ -33,7 +33,7 @@ module PunditNamespaces
     end
 
     def stack
-      @stack||= []
+      @stack ||= []
     end
 
     def new_node(name, ns)

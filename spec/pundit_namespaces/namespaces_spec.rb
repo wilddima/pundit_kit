@@ -10,7 +10,7 @@ RSpec.describe PunditNamespaces::Namespaces do
       let(:matcher) { User.new(:admin) }
 
       it 'return staff admin route' do
-        expect(subject.map { |ns| ns.map(&:name) }).to eq([[:staff], [:staff, :admin]])
+        expect(subject.map { |ns| ns.map(&:name) }).to eq([[:staff], %i[staff admin]])
       end
     end
 
@@ -18,7 +18,7 @@ RSpec.describe PunditNamespaces::Namespaces do
       let(:matcher) { User.new(:user) }
 
       it 'return staff user route' do
-        expect(subject.map { |ns| ns.map(&:name) }).to eq([[:staff], [:staff, :user]])
+        expect(subject.map { |ns| ns.map(&:name) }).to eq([[:staff], %i[staff user]])
       end
     end
 

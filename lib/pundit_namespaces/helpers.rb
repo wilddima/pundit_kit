@@ -3,7 +3,7 @@ module PunditNamespaces
     class UndefinedMatcherError < StandardError; end
 
     def authorize_all(record, query = nil)
-      query ||= params[:action].to_s + "?"
+      query ||= params[:action].to_s + '?'
 
       policy_namespaces(pundit_user, record).each do |policy|
         unless policy[:policy_obj].public_send(query)
