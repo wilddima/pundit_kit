@@ -27,7 +27,7 @@ module PunditNamespaces
 
     def all_pathes_to_root
       each_leaf.inject([]) do |acc, node|
-        acc += pathes_to_root(node)
+        acc += path_and_subpathes_to_root(node)
         acc
       end
     end
@@ -38,23 +38,21 @@ module PunditNamespaces
     end
 
     def path_to_root(node)
-      path = [node.content]
-      loop do
-        break if node.is_root?
-        path << node.parent.content
-        node = node.parent
-      end
-      path.reverse[1..-1]
+      path = collect_ancestors(node, [node.content]) { |nd| nd.parent.content }
+      path[1..-1]
     end
 
-    def pathes_to_root(node)
-      path = []
+    def path_and_subpathes_to_root(node)
+      collect_ancestors(node, []) { |nd| path_to_root(nd) }
+    end
+
+    def collect_ancestors(node, accumulator = [])
       loop do
         break if node.is_root?
-        path << path_to_root(node)
+        accumulator << yield(node)
         node = node.parent
       end
-      path.reverse
+      accumulator.reverse
     end
 
     def dup
