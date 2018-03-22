@@ -1,7 +1,7 @@
 class ClientNotAllowedError < StandardError; end
 class UserNotAllowedError < StandardError; end
 
-PunditNamespaces.routes do
+PunditKit.routes do
   namespace :staff, if: -> (user) { user.staff? }, presence: false do
     namespace :admin, if: -> (user) { user.admin? }
     namespace :user, if: -> (user) { user.user? }, error: UserNotAllowedError

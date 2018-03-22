@@ -1,6 +1,6 @@
 class ApplicationController <  ActionController::Base
   include Pundit
-  include PunditNamespaces
+  include PunditKit
 
   def current_user
     @current_user

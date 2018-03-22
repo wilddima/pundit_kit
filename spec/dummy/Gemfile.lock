@@ -1,7 +1,7 @@
 PATH
   remote: ../..
   specs:
-    pundit_namespaces (0.1.0)
+    pundit_kit (0.1.0)
       pundit
       rubytree
 
@@ -122,7 +122,7 @@ PLATFORMS
 DEPENDENCIES
   puma
   pundit
-  pundit_namespaces!
+  pundit_kit!
   rails
   sqlite3
 

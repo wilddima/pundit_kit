@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-RSpec.describe PunditNamespaces::Namespace do
+RSpec.describe PunditKit::Namespace do
   subject { described_class.new(name, options) }
 
   let(:name) { 'test' }

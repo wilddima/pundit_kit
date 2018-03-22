@@ -1,4 +1,4 @@
-module PunditNamespaces
+module PunditKit
   class Namespaces
     def namespace(name, options = {}, &block)
       name = name.to_sym

@@ -1,4 +1,4 @@
-module PunditNamespaces
+module PunditKit
   class RoutesTree
     extend Forwardable
     attr_accessor :tree

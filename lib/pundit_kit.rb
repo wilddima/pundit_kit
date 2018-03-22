@@ -1,14 +1,14 @@
 require 'tree'
 require 'pundit'
-require 'pundit_namespaces/version'
-require 'pundit_namespaces/namespace'
-require 'pundit_namespaces/namespaces'
-require 'pundit_namespaces/routes_tree'
-require 'pundit_namespaces/routes_builder'
-require 'pundit_namespaces/policy_finder'
-require 'pundit_namespaces/helpers'
+require 'pundit_kit/version'
+require 'pundit_kit/namespace'
+require 'pundit_kit/namespaces'
+require 'pundit_kit/routes_tree'
+require 'pundit_kit/routes_builder'
+require 'pundit_kit/policy_finder'
+require 'pundit_kit/helpers'
 
-module PunditNamespaces
+module PunditKit
   class NoRoutesError < StandardError; end
 
   def self.routes(&block)
@@ -33,9 +33,9 @@ module PunditNamespaces
   end
 
   def self.included(base)
-    base.include(PunditNamespaces::Helpers)
+    base.include(PunditKit::Helpers)
     base.class_eval do
-      helper PunditNamespaces::Helpers if respond_to?(:helper)
+      helper PunditKit::Helpers if respond_to?(:helper)
       if respond_to?(:helper_method)
         helper_method :authorize_all
         helper_method :policies

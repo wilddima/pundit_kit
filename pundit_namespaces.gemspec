@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "pundit_namespaces/version"
+require "pundit_kit/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "pundit_namespaces"
-  spec.version       = PunditNamespaces::VERSION
+  spec.name          = "pundit_kit"
+  spec.version       = PunditKit::VERSION
   spec.authors       = ["WildDima"]
   spec.email         = ["dtopornin@gmail.com"]
 

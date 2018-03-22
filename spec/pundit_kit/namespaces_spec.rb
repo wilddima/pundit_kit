@@ -1,7 +1,7 @@
 require 'spec_helper'
 
-RSpec.describe PunditNamespaces::Namespaces do
-  let(:namespaces) { PunditNamespaces.namespaces }
+RSpec.describe PunditKit::Namespaces do
+  let(:namespaces) { PunditKit.namespaces }
 
   describe '#matches' do
     subject { namespaces.matches(matcher) }

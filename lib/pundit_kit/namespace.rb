@@ -1,4 +1,4 @@
-module PunditNamespaces
+module PunditKit
   class Namespace
     attr_reader :name, :options, :match, :presence, :error
 

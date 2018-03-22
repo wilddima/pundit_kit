@@ -1,4 +1,4 @@
-module PunditNamespaces
+module PunditKit
   module Helpers
     class UndefinedMatcherError < StandardError; end
 
@@ -24,7 +24,7 @@ module PunditNamespaces
     end
 
     def policy_finder
-      PunditNamespaces::PolicyFinder.new(pundit_namespace_matcher)
+      PunditKit::PolicyFinder.new(pundit_namespace_matcher)
     end
 
     def policy_namespaces(user, record)

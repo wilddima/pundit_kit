@@ -1,6 +1,6 @@
 AllCops:
   Exclude:
-    - pundit_namespaces.gemspec
+    - pundit_kit.gemspec
     - spec/dummy/**/*
 
 Metrics/LineLength:

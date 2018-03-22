@@ -1,4 +1,4 @@
-module PunditNamespaces
+module PunditKit
   class RoutesBuilder
     attr_reader :namespaces
 

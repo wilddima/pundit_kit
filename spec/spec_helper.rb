@@ -1,5 +1,5 @@
 require 'bundler/setup'
-require 'pundit_namespaces'
+require 'pundit_kit'
 
 RSpec.configure do |config|
   # Enable flags like --only-failures and --next-failure
