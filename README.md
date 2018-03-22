@@ -3,6 +3,28 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/edeb93a920e210fa3b85/maintainability)](https://codeclimate.com/github/WildDima/pundit_kit/maintainability)
 [![Build Status](https://travis-ci.org/WildDima/pundit_kit.svg?branch=master)](https://travis-ci.org/WildDima/pundit_kit)
 
+## Usage
+
+``` ruby
+class ClientNotAllowedError < StandardError; end
+class UserNotAllowedError < StandardError; end
+
+PunditKit.routes do
+  namespace :staff, if: -> (user) { user.staff? }, presence: false do
+    namespace :admin, if: -> (user) { user.admin? }
+    namespace :user, if: -> (user) { user.user? }, error: UserNotAllowedError
+  end
+
+  namespace :client, if: -> (user) { user.client? }, error: ClientNotAllowedError do
+    namespace :superclient,
+              if: -> (user) { user.superclient? },
+              error: ClientNotAllowedError,
+              presence: false
+  end
+end
+
+```
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
