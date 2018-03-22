@@ -1,5 +1,8 @@
 # PunditKit
 
+[![Maintainability](https://api.codeclimate.com/v1/badges/edeb93a920e210fa3b85/maintainability)](https://codeclimate.com/github/WildDima/pundit_kit/maintainability)
+[![Build Status](https://travis-ci.org/WildDima/pundit_kit.svg?branch=master)](https://travis-ci.org/WildDima/pundit_kit)
+
 ## Development
 
 After checking out the repo, run `bin/setup` to install dependencies. Then, run `rake spec` to run the tests. You can also run `bin/console` for an interactive prompt that will allow you to experiment.
