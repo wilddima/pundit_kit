@@ -3,7 +3,17 @@
 [![Maintainability](https://api.codeclimate.com/v1/badges/edeb93a920e210fa3b85/maintainability)](https://codeclimate.com/github/WildDima/pundit_kit/maintainability)
 [![Build Status](https://travis-ci.org/WildDima/pundit_kit.svg?branch=master)](https://travis-ci.org/WildDima/pundit_kit)
 
+## Instalation
+
+Add pundit_kit to your gemfile:
+
+```ruby
+gem 'pundit_kit'
+```
+
 ## Usage
+
+Add to initializer routes:
 
 ``` ruby
 class ClientNotAllowedError < StandardError; end
@@ -24,6 +34,15 @@ PunditKit.routes do
 end
 
 ```
+
+Each namespace has these options:
+
+|options|default|description|
+|-------|-------|-----------|
+|if:|-> { true }| lamda(or any callable object) evaluation of which determines should be used this namespace or not|
+|presence:| true | if true then will raise error if policy in this namespace can't be found |
+|error:| Pundit::NotAuthorizedError | error which would be raised if authorize call will return false |
+
 
 ## Development
 
