@@ -2,23 +2,24 @@ module Staff
   module Admin
     class PostPolicy < ApplicationPolicy
       def index?
-        true
+        return true if context == :admin
+        false
       end
 
       def show?
-        true
+        index?
       end
 
       def create?
-        true
+        index?
       end
 
       def update?
-        true
+        index?
       end
 
       def destroy?
-        true
+        index?
       end
     end
   end

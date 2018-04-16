@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe HomeController, type: :controller do
+RSpec.describe AdminController, type: :controller do
   let(:user) { User }
 
   describe '#GET index' do
@@ -11,7 +11,7 @@ RSpec.describe HomeController, type: :controller do
       subject { get(:index) }
 
       it do
-        expect(subject).to have_http_status(:forbidden)
+        expect(subject).to have_http_status(:success)
       end
     end
   end

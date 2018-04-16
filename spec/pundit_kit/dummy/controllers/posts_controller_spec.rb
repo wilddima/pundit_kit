@@ -35,7 +35,7 @@ RSpec.describe PostsController, type: :controller do
       let(:user) { :admin }
 
       it 'does return success' do
-        expect(subject).to have_http_status(:success)
+        expect(subject).to have_http_status(:forbidden)
       end
     end
   end
@@ -71,7 +71,7 @@ RSpec.describe PostsController, type: :controller do
       let(:user) { :admin }
 
       it 'does return success' do
-        expect(subject).to have_http_status(:success)
+        expect(subject).to have_http_status(:forbidden)
       end
     end
   end
@@ -107,7 +107,7 @@ RSpec.describe PostsController, type: :controller do
       let(:user) { :admin }
 
       it 'does return success' do
-        expect(subject).to have_http_status(:success)
+        expect(subject).to have_http_status(:forbidden)
       end
     end
   end
