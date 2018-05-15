@@ -23,5 +23,8 @@ Metrics/ParameterLists:
 Style/FrozenStringLiteralComment:
   Enabled: false
 
+Style/Documentation:
+  Enabled: false
+
 Layout/SpaceInLambdaLiteral:
   EnforcedStyle: require_space
