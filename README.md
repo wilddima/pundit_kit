@@ -1,7 +1,7 @@
 # PunditKit
 
 [![Maintainability](https://api.codeclimate.com/v1/badges/edeb93a920e210fa3b85/maintainability)](https://codeclimate.com/github/WildDima/pundit_kit/maintainability)
-[![Build Status](https://travis-ci.org/WildDima/pundit_kit.svg?branch=master)](https://travis-ci.org/WildDima/pundit_kit)
+[![Build Status](https://travis-ci.org/wilddima/pundit_kit.svg?branch=master)](https://travis-ci.org/wilddima/pundit_kit)
 
 ## Instalation
 
