@@ -13,7 +13,7 @@ gem 'pundit_kit'
 
 ## Usage
 
-Add to initializer routes:
+Example of initializer routes:
 
 ``` ruby
 class ClientNotAllowedError < StandardError; end
@@ -43,6 +43,24 @@ Each namespace has these options:
 |presence:| true | if true then will raise error if policy in this namespace can't be found |
 |error:| Pundit::NotAuthorizedError | error which would be raised if authorize call will return false |
 
+## Example
+
+For example yours application logic looks like this:
+Include PunditKit to ApplicationController
+
+```
+class ApplicationController <  ActionController::Base
+  include PunditKit
+end
+```
+
+This'll add helpers to yours controllers:
+* `authorize_all` - this method will call authorize on every namespace
+* `all_policies` - this method will return all namespaces matches to `pundit_namespace_matcher`
+
+## TODO
+* scope
+* fallbacks
 
 ## Development
 
